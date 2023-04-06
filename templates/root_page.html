@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-African Savannah Survey
-{% end block %}
+Satisfaction Survey
+{% endblock %}
 
 {% block content %}
-<h1>What do you know about the African Savannah?</h1>
-<p>Take this survey to find out! Answer each question to move onto the next. Some questions have an option to leave comments as well.</p>
-<a href="question/0"><button class="survey-start">Test Your Knowledge</button></a>
+<h1>{{satisfaction_survey["title"]}}</h1>
+<p>{{satisfaction_survey["instructions"]}}</p>
+<a href="{{ url_for('questions_page', num=0) }}"><button class="survey-start">Begin Survey</button></a>
 {% endblock %}

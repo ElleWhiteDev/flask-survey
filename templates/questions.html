@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Customer Satisfaction Survey
+{% endblock %}
+
+{% block content %}
+<h1 class="customer-survey-text">Customer Satisfaction Survey</h1>
+<form action="/answer" method="POST">
+    {% for question in satisfaction_survey.questions %}
+        {% if loop.index0 == num %}
+            <div class="question-container">
+                <h2 class="question-title">{{ question.question }}</h2>
+                {% for choice in question.choices %}
+                    <div>
+                    <label class="choice-label">
+                    <input class="choice-input" type="radio" name="{{ num }}" value="{{ choice }}">
+                        {{ choice }}
+                    </label>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+<div class="button-container">
+    <button type="submit" class="survey-submit">Next</button> 
+</div>
+</form>
+{% endblock %}
+

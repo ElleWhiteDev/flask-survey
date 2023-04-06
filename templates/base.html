@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Document{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>{% block title %}Survey{% endblock %}</title>
 </head>
 <body>
-    {% block content%}
-    {% endblock %}
+    <main id='content'>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <section class="messages">
+        {% for category,msg in messages %}
+        <p class='{{category}}'>{{ msg }}</p>
+        {% endfor %}
+    </section>
+    {% endif %}
+    {% endwith %}
+
+    <div class="messages" id="validation-message-container"></div>
+
+    {% block content %} {% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>
